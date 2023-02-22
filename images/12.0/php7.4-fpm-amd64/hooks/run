@@ -14,14 +14,14 @@ export SOURCE_COMMIT
 export COMMIT_MSG
 # COMMIT_MSG=$(git log -1 --format=%s)
 
-export DOCKER_REPO=monogramm/docker-dolibarr
+export DOCKER_REPO=mlaplanche/dolibarr-docker
 export DOCKERFILE_PATH=Dockerfile
 export DOCKER_TAG=12.0
 
 if [ -n "${DOCKER_REGISTRY}" ]; then
-    export IMAGE_NAME=${DOCKER_REGISTRY}/mlaplanche/dolibarr-docker:${DOCKER_TAG}
+    export IMAGE_NAME=${DOCKER_REGISTRY}/${DOCKER_REPO}:${DOCKER_TAG}
 else
-    export IMAGE_NAME=mlaplanche/dolibarr-docker:${DOCKER_TAG}
+    export IMAGE_NAME=${DOCKER_REPO}:${DOCKER_TAG}
 fi
 
 # Execute hooks in given order
