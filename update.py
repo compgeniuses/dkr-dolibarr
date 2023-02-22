@@ -9,7 +9,7 @@ import requests
 import markdown
 
 # Docker repository to push images to
-DOCKER_REPO = 'mlaplanche/docker-dolibarr'
+DOCKER_REPO = 'maximelaplanche/docker-dolibarr'
 
 # Versions of Dolibarr to build Docker images for
 versions = []
