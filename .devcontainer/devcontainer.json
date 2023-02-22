@@ -6,16 +6,32 @@
 	"image": "mcr.microsoft.com/devcontainers/python:0-3.11",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
+	// "features": {
+    //     "ghcr.io/devcontainers/features/python:1": {}
+    // },
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "source ./.venv/bin/activate"
+	"postCreateCommand": "if [ -d \"./.venv\" ]; then /usr/local/bin/python -m venv ./.venv ; else echo \"Virtual env is ok\"; fi && . ./.venv/bin/activate && pip3 install -r ./requirements.txt",
 
 	// Configure tool-specific properties.
-	// "customizations": {},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.linting.enabled": true,
+				"python.linting.pylintEnabled": true,
+				"python.pythonPath": "${containerWorkspaceFolder}/.venv/bin/python3",
+				"python.venvPath": "${containerWorkspaceFolder}/.venv"
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"donjayamanne.python-environment-manager",
+				"ms-python.pylint"
+			]
+		}
+	}
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
