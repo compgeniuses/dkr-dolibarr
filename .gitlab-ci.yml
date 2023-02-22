@@ -23,9 +23,7 @@ stages:
 .docker:build: &docker_build
   - chmod -R +x ./hooks
   - chmod +x ./hooks/run
-  - ls -al ./hooks
   - ./hooks/run build
-  - docker images
   - ./hooks/run test
 
 .base:project:
@@ -81,6 +79,10 @@ sonarcloud-check:
     - merge_requests
     - main
     - develop
+  tags:
+    - docker
+    - production
+
 dockerhub:readme:
   stage: .post
   image:
@@ -94,3 +96,6 @@ dockerhub:readme:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       when: on_success
+  tags:
+    - docker
+    - production
