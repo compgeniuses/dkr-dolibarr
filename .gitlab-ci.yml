@@ -34,7 +34,7 @@ stages:
   services:
     - docker:dind
   before_script:
-    - docker info
+    - apk add --no-cache bash
     - cd images/${VERSION}/php${PHP_VERSION}-${VARIANT}-${ARCHI}
     - /bin/sh -c "echo 'test'"
     - /bin/bash -c "echo 'test'"
