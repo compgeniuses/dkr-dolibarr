@@ -96,21 +96,21 @@ Tags:
 |[16.0](./images/16.0)|`16.0.4-apache` `16.0-apache` `apache` `16.0.4` `16.0` **`latest`**|amd64, i386|8.1|
 |[16.0](./images/16.0)|`16.0.4-fpm` `16.0-fpm` `fpm`|amd64, i386|8.1|
 |[16.0](./images/16.0)|`16.0.4-fpm-alpine` `16.0-fpm-alpine` `fpm-alpine`|amd64, i386|8.1|
-|[15.0](./images/15.0)|`15.0.3-apache` `15.0-apache` `15.0.3` `15.0`|amd64, i386|7.4|
-|[15.0](./images/15.0)|`15.0.3-fpm` `15.0-fpm`|amd64, i386|7.4|
-|[15.0](./images/15.0)|`15.0.3-fpm-alpine` `15.0-fpm-alpine`|amd64, i386|7.4|
-|[14.0](./images/14.0)|`14.0.5-apache` `14.0-apache` `14.0.5` `14.0`|amd64, i386|7.4|
-|[14.0](./images/14.0)|`14.0.5-fpm` `14.0-fpm`|amd64, i386|7.4|
-|[14.0](./images/14.0)|`14.0.5-fpm-alpine` `14.0-fpm-alpine`|amd64, i386|7.4|
-|[13.0](./images/13.0)|`13.0.5-apache` `13.0-apache` `13.0.5` `13.0`|amd64, i386|7.4|
-|[13.0](./images/13.0)|`13.0.5-fpm` `13.0-fpm`|amd64, i386|7.4|
-|[13.0](./images/13.0)|`13.0.5-fpm-alpine` `13.0-fpm-alpine`|amd64, i386|7.4|
-|[12.0](./images/12.0)|`12.0.5-apache` `12.0-apache` `12.0.5` `12.0`|amd64, i386|7.4|
-|[12.0](./images/12.0)|`12.0.5-fpm` `12.0-fpm`|amd64, i386|7.4|
-|[12.0](./images/12.0)|`12.0.5-fpm-alpine` `12.0-fpm-alpine`|amd64, i386|7.4|
-|[11.0](./images/11.0)|`11.0.5-apache` `11.0-apache` `11.0.5` `11.0`|amd64, i386|7.4|
-|[11.0](./images/11.0)|`11.0.5-fpm` `11.0-fpm`|amd64, i386|7.4|
-|[11.0](./images/11.0)|`11.0.5-fpm-alpine` `11.0-fpm-alpine`|amd64, i386|7.4|
+|[15.0](./images/15.0)|`15.0.3-apache` `15.0-apache` `15.0.3` `15.0`|amd64, i386|7.3|
+|[15.0](./images/15.0)|`15.0.3-fpm` `15.0-fpm`|amd64, i386|7.3|
+|[15.0](./images/15.0)|`15.0.3-fpm-alpine` `15.0-fpm-alpine`|amd64, i386|7.3|
+|[14.0](./images/14.0)|`14.0.5-apache` `14.0-apache` `14.0.5` `14.0`|amd64, i386|7.3|
+|[14.0](./images/14.0)|`14.0.5-fpm` `14.0-fpm`|amd64, i386|7.3|
+|[14.0](./images/14.0)|`14.0.5-fpm-alpine` `14.0-fpm-alpine`|amd64, i386|7.3|
+|[13.0](./images/13.0)|`13.0.5-apache` `13.0-apache` `13.0.5` `13.0`|amd64, i386|7.3|
+|[13.0](./images/13.0)|`13.0.5-fpm` `13.0-fpm`|amd64, i386|7.3|
+|[13.0](./images/13.0)|`13.0.5-fpm-alpine` `13.0-fpm-alpine`|amd64, i386|7.3|
+|[12.0](./images/12.0)|`12.0.5-apache` `12.0-apache` `12.0.5` `12.0`|amd64, i386|7.3|
+|[12.0](./images/12.0)|`12.0.5-fpm` `12.0-fpm`|amd64, i386|7.3|
+|[12.0](./images/12.0)|`12.0.5-fpm-alpine` `12.0-fpm-alpine`|amd64, i386|7.3|
+|[11.0](./images/11.0)|`11.0.5-apache` `11.0-apache` `11.0.5` `11.0`|amd64, i386|7.3|
+|[11.0](./images/11.0)|`11.0.5-fpm` `11.0-fpm`|amd64, i386|7.3|
+|[11.0](./images/11.0)|`11.0.5-fpm-alpine` `11.0-fpm-alpine`|amd64, i386|7.3|
 
 <!-- <Docker Tags -->
 https://wiki.dolibarr.org/index.php?title=Versions
