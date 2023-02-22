@@ -82,7 +82,7 @@ sonarcloud-check:
     - docker
     - production
 
-dockerhub:readme:
+.dockerhub:readme:
   stage: .post
   image:
     name: chko/docker-pushrm

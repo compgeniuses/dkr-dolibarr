@@ -3,7 +3,7 @@ FROM amd64/php:7.3-fpm-alpine
 # Install the packages we need
 # Install the PHP extensions we need
 # see https://wiki.dolibarr.org/index.php/Dependencies_and_external_libraries
-# Prepare folders
+# Prepare folders 
 RUN set -ex; \
 	apk add --no-cache \
 		bzip2 \

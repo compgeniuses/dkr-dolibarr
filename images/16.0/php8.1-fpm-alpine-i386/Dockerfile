@@ -4,7 +4,7 @@ FROM i386/php:8.1-fpm-alpine
 # Install the PHP extensions we need
 # see https://wiki.dolibarr.org/index.php/Dependencies_and_external_libraries
 # Prepare folders
-RUN set -ex; \
+RUN set -ex; \ 
 	apk add --no-cache \
 		bzip2 \
 		icu-libs \

@@ -4,7 +4,7 @@ FROM amd64/php:7.3-apache
 # Install the PHP extensions we need
 # see https://wiki.dolibarr.org/index.php/Dependencies_and_external_libraries
 # Prepare folders
-RUN set -ex; \
+RUN set -ex; \ 
 	apt-get update -q; \
 	apt-get install -y --no-install-recommends \
 		bzip2 \
