@@ -1,11 +1,19 @@
-[![License: AGPL v3][uri_license_image]][uri_license]
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2da2a49afafc46b19275d1f8eb849f8e)](https://www.codacy.com/gh/Monogramm/docker-dolibarr?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Monogramm/docker-dolibarr&amp;utm_campaign=Badge_Grade)
-[![Build Status](https://travis-ci.org/Monogramm/docker-dolibarr.svg)](https://travis-ci.org/Monogramm/docker-dolibarr)
-[![Docker Automated buid](https://img.shields.io/docker/cloud/build/monogramm/docker-dolibarr.svg)](https://hub.docker.com/r/monogramm/docker-dolibarr/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/monogramm/docker-dolibarr.svg)](https://hub.docker.com/r/monogramm/docker-dolibarr/)
-[![Docker Version](https://images.microbadger.com/badges/version/monogramm/docker-dolibarr.svg)](https://microbadger.com/images/monogramm/docker-dolibarr)
-[![Docker Size](https://images.microbadger.com/badges/image/monogramm/docker-dolibarr.svg)](https://microbadger.com/images/monogramm/docker-dolibarr)
-[![GitHub stars](https://img.shields.io/github/stars/Monogramm/docker-dolibarr?style=social)](https://github.com/Monogramm/docker-dolibarr)
+[![License: AGPL v3](https://img.shields.io/gitlab/license/mlaplanche/docker-dolibarr?color=blue&style=for-the-badge)](https://gitlab.com/mlaplanche/docker-dolibarr/-/blob/main/LICENSE)
+[![Build Status](https://img.shields.io/gitlab/pipeline-status/mlaplanche/docker-dolibarr?branch=main&style=for-the-badge)](https://gitlab.com/mlaplanche/docker-dolibarr/-/pipelines?scope=branches)
+[![Docker Pulls](https://img.shields.io/docker/pulls/maximelaplanche/docker-dolibarr?style=for-the-badge)](https://hub.docker.com/r/maximelaplanche/docker-dolibarr)
+[![Latest version](https://img.shields.io/gitlab/v/release/mlaplanche/docker-dolibarr?sort=semver&style=for-the-badge)](https://github.com/Dolibarr/dolibarr/releases/)
+[![Docker Size](https://img.shields.io/docker/image-size/maximelaplanche/docker-dolibarr?sort=semver&style=for-the-badge)](https://hub.docker.com/r/maximelaplanche/docker-dolibarr)
+[![Docker stars](https://img.shields.io/docker/stars/maximelaplanche/docker-dolibarr?style=for-the-badge)](https://hub.docker.com/r/maximelaplanche/docker-dolibarr)
+[![Gitlab stars](https://img.shields.io/gitlab/stars/docker-dolibarr?label=Gitlab%20stars&style=for-the-badge)](https://img.shields.io/gitlab/stars/docker-dolibarr?label=Gitlab%20stars&style=for-the-badge)
+[![GitHub stars](https://img.shields.io/github/stars/LaplancheMaxime/docker-dolibarr?label=Github%20stars&style=for-the-badge)](https://img.shields.io/github/stars/LaplancheMaxime/docker-dolibarr?label=Github%20stars&style=for-the-badge)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=bugs)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
 
 # Dolibarr on Docker
 
@@ -13,64 +21,99 @@ Docker image for Dolibarr.
 
 Provides full database configuration, production mode, HTTPS enforcer (SSL must be provided by reverse proxy), handles upgrades, and so on...
 
+<!-- >Summary -->
+- [Dolibarr on Docker](#dolibarr-on-docker)
+  - [What is Dolibarr](#what-is-dolibarr)
+  - [Supported tags and respective Dockerfile links](#supported-tags-and-respective-dockerfile-links)
+  - [How to run this image](#how-to-run-this-image)
+  - [Using the apache image](#using-the-apache-image)
+  - [Using the fpm image](#using-the-fpm-image)
+  - [Using an external database](#using-an-external-database)
+  - [Persistent data](#persistent-data)
+  - [Auto configuration via environment variables](#auto-configuration-via-environment-variables)
+    - [DOLI_AUTO_CONFIGURE](#doli_auto_configure)
+    - [DOLI_DB_TYPE](#doli_db_type)
+    - [DOLI_DB_HOST](#doli_db_host)
+    - [DOLI_DB_PORT](#doli_db_port)
+    - [DOLI_DB_NAME](#doli_db_name)
+    - [DOLI_DB_USER](#doli_db_user)
+    - [DOLI_DB_PASSWORD](#doli_db_password)
+    - [DOLI_DB_PREFIX](#doli_db_prefix)
+    - [DOLI_DB_CHARACTER_SET](#doli_db_character_set)
+    - [DOLI_DB_COLLATION](#doli_db_collation)
+    - [DOLI_DB_ROOT_LOGIN](#doli_db_root_login)
+    - [DOLI_DB_ROOT_PASSWORD](#doli_db_root_password)
+    - [DOLI_ADMIN_LOGIN](#doli_admin_login)
+    - [DOLI_MODULES](#doli_modules)
+    - [DOLI_URL_ROOT](#doli_url_root)
+    - [DOLI_AUTH](#doli_auth)
+    - [DOLI_LDAP_HOST](#doli_ldap_host)
+    - [DOLI_LDAP_PORT](#doli_ldap_port)
+    - [DOLI_LDAP_VERSION](#doli_ldap_version)
+    - [DOLI_LDAP_SERVERTYPE](#doli_ldap_servertype)
+    - [DOLI_LDAP_DN](#doli_ldap_dn)
+    - [DOLI_LDAP_LOGIN_ATTRIBUTE](#doli_ldap_login_attribute)
+    - [DOLI_LDAP_FILTER](#doli_ldap_filter)
+    - [DOLI_LDAP_ADMIN_LOGIN](#doli_ldap_admin_login)
+    - [DOLI_LDAP_ADMIN_PASS](#doli_ldap_admin_pass)
+    - [DOLI_LDAP_DEBUG](#doli_ldap_debug)
+    - [DOLI_PROD](#doli_prod)
+    - [DOLI_HTTPS](#doli_https)
+    - [DOLI_NO_CSRF_CHECK](#doli_no_csrf_check)
+    - [PHP_INI_DATE_TIMEZONE](#php_ini_date_timezone)
+    - [PHP_MEMORY_LIMIT](#php_memory_limit)
+    - [PHP_MAX_UPLOAD](#php_max_upload)
+    - [PHP_MAX_EXECUTION_TIME](#php_max_execution_time)
+    - [WWW_USER_ID](#www_user_id)
+    - [WWW_GROUP_ID](#www_group_id)
+  - [Running this image with docker-compose](#running-this-image-with-docker-compose)
+    - [Base version - apache with MariaDB/MySQL](#base-version---apache-with-mariadb/mysql)
+  - [Base version - FPM with PostgreSQL](#base-version---fpm-with-postgresql)
+  - [Make your Dolibarr available from the internet](#make-your-dolibarr-available-from-the-internet)
+    - [HTTPS - SSL encryption](#https---ssl-encryption)
+  - [First use](#first-use)
+  - [Update to a newer version](#update-to-a-newer-version)
+  - [Adding Features](#adding-features)
+  - [Questions / Issues](#questions-/-issues)
+<!-- <Summary -->
+
 ## What is Dolibarr
 
 Dolibarr ERP & CRM is a modern software package to manage your organization's activity (contacts, suppliers, invoices, orders, stocks, agenda, ...).
 
 > [More informations](https://github.com/dolibarr/dolibarr)
 
-## Supported tags and respective `Dockerfile` links
+## Supported tags and respective Dockerfile links
 
-[Dockerhub monogramm/docker-dolibarr/](https://hub.docker.com/r/monogramm/docker-dolibarr/)
+[Dockerhub maximelaplanche/docker-dolibarr](https://hub.docker.com/r/maximelaplanche/docker-dolibarr)
 
 Tags:
 
 <!-- >Docker Tags -->
 
--   16.0.1-apache 16.0-apache apache 16.0.1 16.0 latest  (`images/16.0/php7.3-apache-amd64/Dockerfile`)
--   16.0.1-apache 16.0-apache apache 16.0.1 16.0 latest  (`images/16.0/php7.3-apache-i386/Dockerfile`)
--   16.0.1-fpm 16.0-fpm fpm  (`images/16.0/php7.3-fpm-amd64/Dockerfile`)
--   16.0.1-fpm 16.0-fpm fpm  (`images/16.0/php7.3-fpm-i386/Dockerfile`)
--   16.0.1-fpm-alpine 16.0-fpm-alpine fpm-alpine  (`images/16.0/php7.3-fpm-alpine-amd64/Dockerfile`)
--   16.0.1-fpm-alpine 16.0-fpm-alpine fpm-alpine  (`images/16.0/php7.3-fpm-alpine-i386/Dockerfile`)
--   15.0.3-apache 15.0-apache 15.0.3 15.0  (`images/15.0/php7.3-apache-amd64/Dockerfile`)
--   15.0.3-apache 15.0-apache 15.0.3 15.0  (`images/15.0/php7.3-apache-i386/Dockerfile`)
--   15.0.3-fpm 15.0-fpm  (`images/15.0/php7.3-fpm-amd64/Dockerfile`)
--   15.0.3-fpm 15.0-fpm  (`images/15.0/php7.3-fpm-i386/Dockerfile`)
--   15.0.3-fpm-alpine 15.0-fpm-alpine  (`images/15.0/php7.3-fpm-alpine-amd64/Dockerfile`)
--   15.0.3-fpm-alpine 15.0-fpm-alpine  (`images/15.0/php7.3-fpm-alpine-i386/Dockerfile`)
--   14.0.5-apache 14.0-apache 14.0.5 14.0  (`images/14.0/php7.3-apache-amd64/Dockerfile`)
--   14.0.5-apache 14.0-apache 14.0.5 14.0  (`images/14.0/php7.3-apache-i386/Dockerfile`)
--   14.0.5-fpm 14.0-fpm  (`images/14.0/php7.3-fpm-amd64/Dockerfile`)
--   14.0.5-fpm 14.0-fpm  (`images/14.0/php7.3-fpm-i386/Dockerfile`)
--   14.0.5-fpm-alpine 14.0-fpm-alpine  (`images/14.0/php7.3-fpm-alpine-amd64/Dockerfile`)
--   14.0.5-fpm-alpine 14.0-fpm-alpine  (`images/14.0/php7.3-fpm-alpine-i386/Dockerfile`)
--   13.0.5-apache 13.0-apache 13.0.5 13.0  (`images/13.0/php7.3-apache-amd64/Dockerfile`)
--   13.0.5-apache 13.0-apache 13.0.5 13.0  (`images/13.0/php7.3-apache-i386/Dockerfile`)
--   13.0.5-fpm 13.0-fpm  (`images/13.0/php7.3-fpm-amd64/Dockerfile`)
--   13.0.5-fpm 13.0-fpm  (`images/13.0/php7.3-fpm-i386/Dockerfile`)
--   13.0.5-fpm-alpine 13.0-fpm-alpine  (`images/13.0/php7.3-fpm-alpine-amd64/Dockerfile`)
--   13.0.5-fpm-alpine 13.0-fpm-alpine  (`images/13.0/php7.3-fpm-alpine-i386/Dockerfile`)
--   12.0.5-apache 12.0-apache 12.0.5 12.0  (`images/12.0/php7.3-apache-amd64/Dockerfile`)
--   12.0.5-apache 12.0-apache 12.0.5 12.0  (`images/12.0/php7.3-apache-i386/Dockerfile`)
--   12.0.5-fpm 12.0-fpm  (`images/12.0/php7.3-fpm-amd64/Dockerfile`)
--   12.0.5-fpm 12.0-fpm  (`images/12.0/php7.3-fpm-i386/Dockerfile`)
--   12.0.5-fpm-alpine 12.0-fpm-alpine  (`images/12.0/php7.3-fpm-alpine-amd64/Dockerfile`)
--   12.0.5-fpm-alpine 12.0-fpm-alpine  (`images/12.0/php7.3-fpm-alpine-i386/Dockerfile`)
--   11.0.5-apache 11.0-apache 11.0.5 11.0  (`images/11.0/php7.3-apache-amd64/Dockerfile`)
--   11.0.5-apache 11.0-apache 11.0.5 11.0  (`images/11.0/php7.3-apache-i386/Dockerfile`)
--   11.0.5-fpm 11.0-fpm  (`images/11.0/php7.3-fpm-amd64/Dockerfile`)
--   11.0.5-fpm 11.0-fpm  (`images/11.0/php7.3-fpm-i386/Dockerfile`)
--   11.0.5-fpm-alpine 11.0-fpm-alpine  (`images/11.0/php7.3-fpm-alpine-amd64/Dockerfile`)
--   11.0.5-fpm-alpine 11.0-fpm-alpine  (`images/11.0/php7.3-fpm-alpine-i386/Dockerfile`)
--   develop-apache develop-apache develop develop  (`images/develop/php7.3-apache-amd64/Dockerfile`)
--   develop-apache develop-apache develop develop  (`images/develop/php7.3-apache-i386/Dockerfile`)
--   develop-fpm develop-fpm  (`images/develop/php7.3-fpm-amd64/Dockerfile`)
--   develop-fpm develop-fpm  (`images/develop/php7.3-fpm-i386/Dockerfile`)
--   develop-fpm-alpine develop-fpm-alpine  (`images/develop/php7.3-fpm-alpine-amd64/Dockerfile`)
--   develop-fpm-alpine develop-fpm-alpine  (`images/develop/php7.3-fpm-alpine-i386/Dockerfile`)
+|Version|Tags|Architecture|PHP|
+|---|---|---|---|
+|[16.0](./images/16.0)|`16.0.4-apache` `16.0-apache` `apache` `16.0.4` `16.0` **`latest`**|amd64, i386|8.1|
+|[16.0](./images/16.0)|`16.0.4-fpm` `16.0-fpm` `fpm`|amd64, i386|8.1|
+|[16.0](./images/16.0)|`16.0.4-fpm-alpine` `16.0-fpm-alpine` `fpm-alpine`|amd64, i386|8.1|
+|[15.0](./images/15.0)|`15.0.3-apache` `15.0-apache` `15.0.3` `15.0`|amd64, i386|7.3|
+|[15.0](./images/15.0)|`15.0.3-fpm` `15.0-fpm`|amd64, i386|7.3|
+|[15.0](./images/15.0)|`15.0.3-fpm-alpine` `15.0-fpm-alpine`|amd64, i386|7.3|
+|[14.0](./images/14.0)|`14.0.5-apache` `14.0-apache` `14.0.5` `14.0`|amd64, i386|7.3|
+|[14.0](./images/14.0)|`14.0.5-fpm` `14.0-fpm`|amd64, i386|7.3|
+|[14.0](./images/14.0)|`14.0.5-fpm-alpine` `14.0-fpm-alpine`|amd64, i386|7.3|
+|[13.0](./images/13.0)|`13.0.5-apache` `13.0-apache` `13.0.5` `13.0`|amd64, i386|7.3|
+|[13.0](./images/13.0)|`13.0.5-fpm` `13.0-fpm`|amd64, i386|7.3|
+|[13.0](./images/13.0)|`13.0.5-fpm-alpine` `13.0-fpm-alpine`|amd64, i386|7.3|
+|[12.0](./images/12.0)|`12.0.5-apache` `12.0-apache` `12.0.5` `12.0`|amd64, i386|7.3|
+|[12.0](./images/12.0)|`12.0.5-fpm` `12.0-fpm`|amd64, i386|7.3|
+|[12.0](./images/12.0)|`12.0.5-fpm-alpine` `12.0-fpm-alpine`|amd64, i386|7.3|
+|[11.0](./images/11.0)|`11.0.5-apache` `11.0-apache` `11.0.5` `11.0`|amd64, i386|7.3|
+|[11.0](./images/11.0)|`11.0.5-fpm` `11.0-fpm`|amd64, i386|7.3|
+|[11.0](./images/11.0)|`11.0.5-fpm-alpine` `11.0-fpm-alpine`|amd64, i386|7.3|
 
 <!-- <Docker Tags -->
+https://wiki.dolibarr.org/index.php?title=Versions
 
 <!--
 ## Quick reference
@@ -103,7 +146,7 @@ The second option is a `fpm` container. It is based on the [php-fpm](https://hub
 The apache image contains a webserver and exposes port 80. To start the container type:
 
 ```shell
-$ docker run -d -e DOLI_AUTO_CONFIGURE='' -p 8080:80 monogramm/docker-dolibarr
+$ docker run -d -e DOLI_AUTO_CONFIGURE='' -p 8080:80 maximelaplanche/docker-dolibarr
 ```
 
 Now you can access Dolibarr at <http://localhost:8080/> from your host system.
@@ -115,7 +158,7 @@ If you use your host you can address your Dolibarr container directly on port 90
 In both cases you don't want to map the fpm port to you host.
 
 ```shell
-$ docker run -d -e DOLI_AUTO_CONFIGURE='' monogramm/docker-dolibarr:fpm
+$ docker run -d -e DOLI_AUTO_CONFIGURE='' maximelaplanche/docker-dolibarr:fpm
 ```
 
 As the fastCGI-Process is not capable of serving static files (style sheets, images, ...) the webserver needs access to these files. This can be achieved with the `volumes-from` option. You can find more information in the docker-compose section.
@@ -142,7 +185,7 @@ $ docker run -d \
     -v dolibarr_html:/var/www/html \
     -v dolibarr_docs:/var/www/documents \
     -e DOLI_AUTO_CONFIGURE='' \
-    monogramm/docker-dolibarr
+    maximelaplanche/docker-dolibarr
 ```
 
 Database:
@@ -176,7 +219,7 @@ $ docker run -d \
     -v config:/var/www/html/conf \
     -v theme:/var/www/html/theme/<YOUR_CUSTOM_THEME> \
     -e DOLI_AUTO_CONFIGURE='' \
-    monogramm/docker-dolibarr
+    maximelaplanche/docker-dolibarr
 ```
 
 ## Auto configuration via environment variables
@@ -589,7 +632,7 @@ In this example, the Dolibarr scripts, documents, HTML and database will all be 
 
 ## Base version - FPM with PostgreSQL
 
-When using the FPM image you need another container that acts as web server on port 80 and proxies the requests to the Dolibarr container. In this example a simple nginx container is combined with the monogramm/docker-dolibarr-fpm image and a [PostgreSQL](https://hub.docker.com/_/postgres/) database container. The data is stored in docker volumes. The nginx container also need access to static files from your Dolibarr installation. It gets access to all the volumes mounted to Dolibarr via the `volumes_from` option. The configuration for nginx is stored in the configuration file `nginx.conf`, that is mounted into the container.
+When using the FPM image you need another container that acts as web server on port 80 and proxies the requests to the Dolibarr container. In this example a simple nginx container is combined with the maximelaplanche/docker-dolibarr-fpm image and a [PostgreSQL](https://hub.docker.com/_/postgres/) database container. The data is stored in docker volumes. The nginx container also need access to static files from your Dolibarr installation. It gets access to all the volumes mounted to Dolibarr via the `volumes_from` option. The configuration for nginx is stored in the configuration file `nginx.conf`, that is mounted into the container.
 
 As this setup does **not include encryption** it should to be run behind a proxy.
 
@@ -660,10 +703,10 @@ You should note though that some environment variables will be ignored during in
 Updating the Dolibarr container is done by pulling the new image, throwing away the old container and starting the new one. Since all data is stored in volumes, nothing gets lost. The startup script will check for the version in your volume and the installed docker version. If it finds a mismatch, it automatically starts the upgrade process. Don't forget to add all the volumes to your new container, so it works as expected. Also, we advised you do not skip major versions during your upgrade. For instance, upgrade from 5.0 to 6.0, then 6.0 to 7.0, not directly from 5.0 to 7.0.
 
 ```shell
-$ docker pull monogramm/docker-dolibarr
+$ docker pull maximelaplanche/docker-dolibarr
 $ docker stop <your_dolibarr_container>
 $ docker rm <your_dolibarr_container>
-$ docker run <OPTIONS> -d monogramm/docker-dolibarr
+$ docker run <OPTIONS> -d maximelaplanche/docker-dolibarr
 ```
 
 Beware that you have to run the same command with the options that you used to initially start your Dolibarr. That includes volumes, port mapping.
@@ -681,7 +724,7 @@ If the image does not include the packages you need, you can easily build your o
 Start your derived image with the `FROM` statement and add whatever you like.
 
 ```Dockerfile
-FROM monogramm/docker-dolibarr:apache
+FROM maximelaplanche/docker-dolibarr:apache
 
 RUN ...
 
@@ -735,8 +778,4 @@ The `--pull` option tells docker to look for new versions of the base image. The
 
 ## Questions / Issues
 
-If you got any questions or problems using the image, please visit our [Github Repository](https://github.com/Monogramm/docker-dolibarr) and write an issue.  
-
-[uri_license]: http://www.gnu.org/licenses/agpl.html
-
-[uri_license_image]: https://img.shields.io/badge/License-AGPL%20v3-blue.svg
+If you got any questions or problems using the image, please visit our [Gitlab Repository](https://gitlab.com/mlaplanche/docker-dolibarr) and write an issue.  
