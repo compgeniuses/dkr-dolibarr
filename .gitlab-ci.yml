@@ -25,6 +25,9 @@ stages:
 .base:project:
   stage: build
   image: docker:latest
+  variables:
+      DOCKER_PASS: $DOCKER_PASSWORD
+      DOCKER_LOGIN: $DOCKER_USER
   services:
     - docker:dind
   before_script:
@@ -86,7 +89,6 @@ dockerhub:readme:
     entrypoint: ["/bin/sh", "-c", "/docker-pushrm"]
   variables:
     PUSHRM_TARGET: docker.io/$DOCKER_USER/docker-dolibarr
-    DOCKER_PASS: $DOCKER_PASSWORD
     USHRM_DEBUG: 1
     PUSHRM_FILE: $CI_PROJECT_DIR/README.md
   script: "/bin/true"
