@@ -145,7 +145,7 @@ for version in versions:
                 for line in file:
                     print(
                         line.replace("${VARIANT}", major_version)
-                        .replace("${DOCKER_REPO}", docker_repo), end='')
+                        .replace("${DOCKER_REPO_URL}", docker_repo), end='')
 
             # Create list of tags for docker hub
             if major_version == latest_version:
