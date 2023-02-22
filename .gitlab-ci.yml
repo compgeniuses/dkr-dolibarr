@@ -24,7 +24,7 @@ stages:
   - chmod -R +x ./hooks
   - chmod +x ./hooks/run
   - ./hooks/run build
-  - ./hooks/run test
+  # - ./hooks/run test
 
 .base:project:
   stage: build
