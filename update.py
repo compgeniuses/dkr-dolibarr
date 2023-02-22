@@ -71,7 +71,7 @@ php_version_by_dolibarr_version = {
 }
 
 # Fetch the tags for Dolibarr from GitHub API
-dolibarr_tags = requests.get("https://api.github.com/repos/dolibarr/dolibarr/tags", verify=False)
+dolibarr_tags = requests.get("https://api.github.com/repos/dolibarr/dolibarr/tags", verify=True)
 dolibarr_tags_obj = json.loads(dolibarr_tags.text)
 
 # Loop through the tags to find the versions of Dolibarr to build images for
