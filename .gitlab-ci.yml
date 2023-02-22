@@ -86,7 +86,7 @@ dockerhub:readme:
   stage: .post
   image:
     name: chko/docker-pushrm
-    entrypoint: ["/bin/sh", "-c", "/docker-pushrm"]
+    entrypoint: ["/bin/sh", "-c", "/docker-pushrm --debug"]
   variables:
     PUSHRM_TARGET: docker.io/$DOCKER_USER/docker-dolibarr
     USHRM_DEBUG: 1
