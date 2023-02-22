@@ -2,6 +2,7 @@ stages:
   - build
   - test
   - deploy
+  - .post
 
 .matrix:versions:variants: &matrix_versions_variants
   parallel:
@@ -72,3 +73,16 @@ sonarcloud-check:
     - merge_requests
     - main
     - develop
+dockerhub:readme:
+  stage: .post
+  image:
+    name: chko/docker-pushrm
+    entrypoint: ["/bin/sh", "-c", "/docker-pushrm"]
+  variables:
+    PUSHRM_TARGET: docker.io/$DOCKER_USER/docker-dolibarr
+    USHRM_DEBUG: 1
+    PUSHRM_FILE: $CI_PROJECT_DIR/README.md
+  script: "/bin/true"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: on_success
