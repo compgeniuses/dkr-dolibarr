@@ -55,8 +55,8 @@ main:docker:
     - ./hooks/run push
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      # changes:
-      #   - images/${VERSION}/php${PHP_VERSION}-${VARIANT}-${ARCHI}/Dockerfile
+      changes:
+        - images/${VERSION}/php${PHP_VERSION}-${VARIANT}-${ARCHI}/Dockerfile
 
 sonarcloud-check:
   variables:
