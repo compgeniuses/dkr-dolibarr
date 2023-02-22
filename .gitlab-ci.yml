@@ -30,7 +30,9 @@ stages:
 
 .base:project:
   stage: build
-  image: docker:latest
+  image: 
+    name: docker:latest
+    entrypoint: [ '/bin/bash', '-c']
   services:
     - docker:dind
   before_script:
