@@ -1,21 +1,21 @@
+"""Module to upgrade dolibarr docker images."""
 #! .venv/bin/python3
 import os
 import shutil
 import fileinput
 import glob
-import requests
 import json
-import re
+import requests
 import markdown
 
 # Docker repository to push images to
-docker_repo = 'mlaplanche/dolibarr-docker'
+DOCKER_REPO = 'mlaplanche/dolibarr-docker'
 
 # Versions of Dolibarr to build Docker images for
 versions = []
 
 # Minimum version of Dolibarr to build Docker images for
-min_version = "11.0.0"
+MIN_VERSION = "11.0.0"
 
 # Latest version of Dolibarr
 latest_version = ''
@@ -71,8 +71,8 @@ php_version_by_dolibarr_version = {
 }
 
 # Fetch the tags for Dolibarr from GitHub API
-dolibarr_tags = requests.get("https://api.github.com/repos/dolibarr/dolibarr/tags", verify=False).text
-dolibarr_tags_obj = json.loads(dolibarr_tags)
+dolibarr_tags = requests.get("https://api.github.com/repos/dolibarr/dolibarr/tags", verify=False)
+dolibarr_tags_obj = json.loads(dolibarr_tags.text)
 
 # Loop through the tags to find the versions of Dolibarr to build images for
 for tag in dolibarr_tags_obj:
@@ -99,7 +99,7 @@ for version in versions:
         latest_version = major_version
 
     # If the version is less than the minimum version to build images for, skip it
-    if (version < min_version):
+    if (version < MIN_VERSION):
         continue
 
     # Loop through the variants and architectures to build images for
@@ -128,7 +128,7 @@ for version in versions:
         
             # If there is a server web variant and its directory exists, copy it to the Docker image directory
             if serverweb_variants[variant] and os.path.exists(f"template/{serverweb_variants[variant]}"):
-              shutil.copytree(f"template/{serverweb_variants[variant]}", f"{directory_name}/{serverweb_variants[variant]}")
+                shutil.copytree(f"template/{serverweb_variants[variant]}", f"{directory_name}/{serverweb_variants[variant]}")
 
             # Replace variables in files
             with fileinput.FileInput(directory_name+'/Dockerfile', inplace=True) as file:
@@ -145,7 +145,7 @@ for version in versions:
                 for line in file:
                     print(
                         line.replace("${VARIANT}", major_version)
-                        .replace("${DOCKER_REPO_URL}", docker_repo), end='')
+                        .replace("${DOCKER_REPO_URL}", DOCKER_REPO), end='')
 
             # Create list of tags for docker hub
             if major_version == latest_version:
@@ -178,41 +178,41 @@ last_version=''
 
 # Loop over the versions list
 for version in versions:
-  # Skip current iteration if major version is same as previous version
-  if(last_version == version[:4]):
-    continue 
+    # Skip current iteration if major version is same as previous version
+    if(last_version == version[:4]):
+        continue 
 
-  # Get the major version from the current version
-  major_version = version[:4]
-  
-  # Update the last version variable
-  last_version = major_version
-  
-  # Check if the current version is greater than or equal to the minimum version
-  if (version >= min_version):
-    # Loop over the variants list
-    for variant in variants:
+    # Get the major version from the current version
+    major_version = version[:4]
 
-      # Add the major version to the table row for the Docker tags
-      readme_table_tags += f"|[{major_version}](./images/{major_version})"
+    # Update the last version variable
+    last_version = major_version
+
+    # Check if the current version is greater than or equal to the minimum version
+    if (version >= MIN_VERSION):
+        # Loop over the variants list
+        for variant in variants:
+
+            # Add the major version to the table row for the Docker tags
+            readme_table_tags += f"|[{major_version}](./images/{major_version})"
+        
+            # Determine the Docker tags based on the major version, the current
+            # version, and the variant
+            if major_version == latest_version:
+                if variant == 'apache':
+                    docker_tags = f"`{version}-{variant}` `{major_version}-{variant}` `{variant}` `{version}` `{major_version}` **`latest`**"
+                else:
+                    docker_tags = f"`{version}-{variant}` `{major_version}-{variant}` `{variant}`"
+            else:
+                if variant == 'apache':
+                    docker_tags = f"`{version}-{variant}` `{major_version}-{variant}` `{version}` `{major_version}`"
+                else:
+                    docker_tags = f"`{version}-{variant}` `{major_version}-{variant}`"
       
-      # Determine the Docker tags based on the major version, the current
-      # version, and the variant
-      if major_version == latest_version:
-          if variant == 'apache':
-              docker_tags = f"`{version}-{variant}` `{major_version}-{variant}` `{variant}` `{version}` `{major_version}` **`latest`**"
-          else:
-              docker_tags = f"`{version}-{variant}` `{major_version}-{variant}` `{variant}`"
-      else:
-          if variant == 'apache':
-              docker_tags = f"`{version}-{variant}` `{major_version}-{variant}` `{version}` `{major_version}`"
-          else:
-              docker_tags = f"`{version}-{variant}` `{major_version}-{variant}`"
-      
-      # Add the Docker tags and the architectures to the table row
-      readme_table_tags += f"|{docker_tags}|"
-      readme_table_tags += ", ".join(archis)
-      readme_table_tags += f"|{php_version_by_dolibarr_version[major_version]}|\n"
+            # Add the Docker tags and the architectures to the table row
+            readme_table_tags += f"|{docker_tags}|"
+            readme_table_tags += ", ".join(archis)
+            readme_table_tags += f"|{php_version_by_dolibarr_version[major_version]}|\n"
 
 # Open the README file for reading and writing
 with open('README.md', 'r+') as file:
@@ -239,7 +239,7 @@ with open('README.md', 'r+') as file:
             title_level = int(line[2])
             # Ajouter le titre à la liste
             headers.append((title_text, title_level))
-    
+
     # If the Docker tags section is found in the file,
     if (start_index_tags != -1 and end_index_tags != -1) and (start_index_summary != -1 and end_index_summary != -1):
         # Extract the old content of the Docker tags section
@@ -249,7 +249,7 @@ with open('README.md', 'r+') as file:
         # Create the new content for the Docker tags section with the updated
         # table of Docker tags
         new_content_tags = f"<!-- >Docker Tags -->\n{readme_table_tags}\n"
-        
+
         new_content_summary=f"<!-- >Summary -->\n"
         # Afficher les titres
         for title, level in headers:
