@@ -7,18 +7,14 @@ stages:
 .matrix:versions:variants: &matrix_versions_variants
   parallel:
     matrix:
-      # - VERSION: ['11.0', '12.0', '13.0', '14.0', '15.0']
-      #   PHP_VERSION: ['7.4']
-      #   VARIANT: ['fpm-alpine', 'fpm', 'apache']
-      #   ARCHI: ['i386', 'amd64']
-      # - VERSION: ['16.0']
-      #   PHP_VERSION: ['8.1']
-      #   VARIANT: ['fpm-alpine', 'fpm', 'apache']
-      #   ARCHI: ['i386', 'amd64']
+      - VERSION: ['11.0', '12.0', '13.0', '14.0', '15.0']
+        PHP_VERSION: ['7.4']
+        VARIANT: ['fpm-alpine', 'fpm', 'apache']
+        ARCHI: ['i386', 'amd64']
       - VERSION: ['16.0']
         PHP_VERSION: ['8.1']
-        VARIANT: ['apache']
-        ARCHI: ['amd64']
+        VARIANT: ['fpm-alpine', 'fpm', 'apache']
+        ARCHI: ['i386', 'amd64']
 
 .docker:build: &docker_build
   - chmod -R +x ./hooks
