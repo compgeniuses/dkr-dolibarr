@@ -62,11 +62,11 @@ archis = [
 ]
 
 php_version_by_dolibarr_version = {
-    "11.0": "7.4",
-    "12.0": "7.4",
-    "13.0": "7.4",
-    "14.0": "7.4",
-    "15.0": "7.4",
+    "11.0": "7.3",
+    "12.0": "7.3",
+    "13.0": "7.3",
+    "14.0": "7.3",
+    "15.0": "7.3",
     "16.0": "8.1",
 }
 
@@ -117,7 +117,7 @@ for version in versions:
             os.makedirs(directory_name)
             
             # Determine the Dockerfile template to use based on the variant and architecture
-            template = f"template/Dockerfile.{bases_images_variants[variant]}.template"
+            template = f"template/Dockerfile.{bases_images_variants[variant]}.{php_version_by_dolibarr_version[major_version]}.template"
             shutil.copy(template, f"{directory_name}/Dockerfile")
             shutil.copy("template/entrypoint.sh", f"{directory_name}/entrypoint.sh")
             shutil.copytree("template/hooks", f"{directory_name}/hooks")
