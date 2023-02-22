@@ -91,6 +91,8 @@ dockerhub:readme:
     PUSHRM_TARGET: docker.io/$DOCKER_USER/docker-dolibarr
     USHRM_DEBUG: 1
     PUSHRM_FILE: $CI_PROJECT_DIR/README.md
+  before_script:
+    - docker login -u "${DOCKER_LOGIN}" -p "${DOCKER_PASSWORD}"
   script: "/bin/true"
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
