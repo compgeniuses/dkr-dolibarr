@@ -4,7 +4,7 @@
 [![Latest version](https://img.shields.io/gitlab/v/release/mlaplanche/docker-dolibarr?sort=semver&style=for-the-badge)](https://github.com/Dolibarr/dolibarr/releases/)
 [![Docker Size](https://img.shields.io/docker/image-size/maximelaplanche/docker-dolibarr?sort=semver&style=for-the-badge)](https://hub.docker.com/r/maximelaplanche/docker-dolibarr)
 [![Docker stars](https://img.shields.io/docker/stars/maximelaplanche/docker-dolibarr?style=for-the-badge)](https://hub.docker.com/r/maximelaplanche/docker-dolibarr)
-[![Gitlab stars](https://img.shields.io/gitlab/stars/docker-dolibarr?label=Gitlab%20stars&style=for-the-badge)](https://img.shields.io/gitlab/stars/docker-dolibarr?label=Gitlab%20stars&style=for-the-badge)
+[![Gitlab stars](https://img.shields.io/gitlab/stars/mlaplanche/docker-dolibarr?label=Gitlab%20stars&style=for-the-badge)](https://img.shields.io/gitlab/stars/docker-dolibarr?label=Gitlab%20stars&style=for-the-badge)
 [![GitHub stars](https://img.shields.io/github/stars/LaplancheMaxime/docker-dolibarr?label=Github%20stars&style=for-the-badge)](https://img.shields.io/github/stars/LaplancheMaxime/docker-dolibarr?label=Github%20stars&style=for-the-badge)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
