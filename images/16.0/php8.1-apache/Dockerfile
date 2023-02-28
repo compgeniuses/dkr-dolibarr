@@ -1,50 +1,41 @@
 ARG ARCHI
-FROM ${ARCHI}/php:%%PHP_VERSION%%-%%VARIANT%%
+FROM ${ARCHI}/php:8.1-apache
 
 # Install the packages we need
 # Install the PHP extensions we need
 # see https://wiki.dolibarr.org/index.php/Dependencies_and_external_libraries
-# Prepare folders 
-RUN set -ex; \
-	apk add --no-cache \
+# Prepare folders
+RUN set -ex; \ 
+	apt-get update -q; \
+	apt-get install -y --no-install-recommends \
 		bzip2 \
-		icu-libs \
-		imagemagick \
-		libldap \
-		libpq \
-		libpng \
-		mysql-client \
+		default-mysql-client \
+		cron \
 		rsync \
-		ssmtp \
-		shadow \
+		sendmail \
 		unzip \
 		zip \
 	; \
-	apk add --no-cache --virtual .build-deps \
-		$PHPIZE_DEPS \
-		autoconf \
-		curl-dev \
-		freetype-dev \
-		gcc \
+	apt-get install -y --no-install-recommends \
 		g++ \
-		icu-dev \
-		libjpeg-turbo-dev \
-		imagemagick-dev \
-		imagemagick-libs \
+		libcurl4-openssl-dev \
+		libfreetype6-dev \
+		libicu-dev \
+		libjpeg-dev \
+		libldap2-dev \
+		libmagickcore-dev \
+		libmagickwand-dev \
 		libmcrypt-dev \
 		libpng-dev \
-		libtool \
+		libpq-dev \
 		libxml2-dev \
 		libzip-dev \
-		make \
-		openldap-dev \
-		postgresql-dev \
-		postgresql-libs \
 		unzip \
-		zlib-dev \
+		zlib1g-dev \
 	; \
-	docker-php-ext-configure ldap; \
-	docker-php-ext-configure gd --with-freetype-dir=/usr --with-png-dir=/usr --with-jpeg-dir=/usr; \
+	debMultiarch="$(dpkg-architecture --query DEB_BUILD_MULTIARCH)"; \
+	docker-php-ext-configure ldap --with-libdir="lib/$debMultiarch"; \
+	docker-php-ext-configure gd --with-freetype=/usr --with-jpeg=/usr; \
 	docker-php-ext-configure intl; \
 	docker-php-ext-configure zip; \
 	docker-php-ext-install -j "$(nproc)" \
@@ -52,7 +43,6 @@ RUN set -ex; \
 		gd \
 		intl \
 		ldap \
-		mbstring \
 		mysqli \
 		pdo \
 		pdo_mysql \
@@ -63,8 +53,7 @@ RUN set -ex; \
 	; \
 	pecl install imagick; \
 	docker-php-ext-enable imagick; \
-	apk --purge del .build-deps; \
-	rm -rf /var/cache/apk/*; \
+	rm -rf /var/lib/apt/lists/*; \
 	mkdir -p /var/www/documents; \
 	chown -R www-data:root /var/www; \
 	chmod -R g=u /var/www
@@ -101,15 +90,15 @@ ENV DOLI_AUTO_CONFIGURE=1 \
 	DOLI_HTTPS=0 \
 	DOLI_PROD=0 \
 	DOLI_NO_CSRF_CHECK=0 \
-	WWW_USER_ID=82 \
-	WWW_GROUP_ID=82 \
+	WWW_USER_ID=33 \
+	WWW_GROUP_ID=33 \
 	PHP_INI_DATE_TIMEZONE='UTC' \
 	PHP_MEMORY_LIMIT=256M \
 	PHP_MAX_UPLOAD=20M \
 	PHP_MAX_EXECUTION_TIME=300
 
 # Build time env var
-ARG DOLI_VERSION=%%VERSION%%
+ARG DOLI_VERSION=16.0.4
 
 # Get Dolibarr
 ADD https://github.com/Dolibarr/dolibarr/archive/${DOLI_VERSION}.zip /tmp/dolibarr.zip
@@ -130,7 +119,7 @@ RUN set -ex; \
 	chmod 755 /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["%%CMD%%"]
+CMD ["apache2-foreground"]
 
 # Arguments to label built container
 # ARG VCS_REF

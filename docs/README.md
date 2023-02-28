@@ -18,17 +18,17 @@
 <!-- <Header -->
 # Dolibarr on Docker
 
-Docker image for Dolibarr.
+## Summary of documentation
 
-Provides full database configuration, production mode, HTTPS enforcer (SSL must be provided by reverse proxy), handles upgrades, and so on...
-
-**[View full documentation here](./docs/README.md)**
-
-## What is Dolibarr
-
-Dolibarr ERP & CRM is a modern software package to manage your organization's activity (contacts, suppliers, invoices, orders, stocks, agenda, ...).
-
-> [More informations](https://github.com/dolibarr/dolibarr)
+- [Using image with other web sever](./OtherWebServer.md)
+- [Using external database](./ExternalDatabase.md)
+- [Persistent Data](./PersistentData.md)
+- [Auto configuration](./AutoConfigurationEnv.md)
+- [Docker Compose](./DockerCompose.md)
+- [Base version - FPM with PostgreSQL](./BaseVersion.md)
+- [Make your Dolibarr available from the internet](./ExternalConnection.md)
+- [First Use](./FirstUse.md)
+- [Update container and add features](./UpdateAndAddFeatures.md)
 
 ## Supported tags and respective Dockerfile links
 
@@ -36,10 +36,11 @@ Dolibarr ERP & CRM is a modern software package to manage your organization's ac
 
 Tags:
 
-<!-- >DockerTags -->
+<!-- >Docker Tags -->
+
 |Version|Tags|Architecture|PHP|
 |---|---|---|---|
-|[16.0](./images/16.0)|`16.0.4-apache` `16.0-apache` `apache` `16.0.4` `16.0` `latest`|amd64, i386|8.1|
+|[16.0](./images/16.0)|`16.0.4-apache` `16.0-apache` `apache` `16.0.4` `16.0` **`latest`**|amd64, i386|8.1|
 |[16.0](./images/16.0)|`16.0.4-fpm` `16.0-fpm` `fpm`|amd64, i386|8.1|
 |[16.0](./images/16.0)|`16.0.4-fpm-alpine` `16.0-fpm-alpine` `fpm-alpine`|amd64, i386|8.1|
 |[15.0](./images/15.0)|`15.0.3-apache` `15.0-apache` `15.0.3` `15.0`|amd64, i386|7.3|
@@ -57,8 +58,9 @@ Tags:
 |[11.0](./images/11.0)|`11.0.5-apache` `11.0-apache` `11.0.5` `11.0`|amd64, i386|7.3|
 |[11.0](./images/11.0)|`11.0.5-fpm` `11.0-fpm`|amd64, i386|7.3|
 |[11.0](./images/11.0)|`11.0.5-fpm-alpine` `11.0-fpm-alpine`|amd64, i386|7.3|
-<!-- <DockerTags -->
-<https://wiki.dolibarr.org/index.php?title=Versions>
+
+<!-- <Docker Tags -->
+https://wiki.dolibarr.org/index.php?title=Versions
 
 <!-- >SupportedArchitectures -->
 ## Quick reference

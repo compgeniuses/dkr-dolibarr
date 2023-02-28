@@ -22,7 +22,7 @@ Docker image for Dolibarr.
 
 Provides full database configuration, production mode, HTTPS enforcer (SSL must be provided by reverse proxy), handles upgrades, and so on...
 
-**[View full documentation here](./docs/README.md)**
+**[View full documentation here](https://gitlab.com/mlaplanche/docker-dolibarr/-/tree/main/docs/README.md)**
 
 ## What is Dolibarr
 
