@@ -54,7 +54,7 @@ develop:docker:
   rules:
     - if: $CI_COMMIT_BRANCH == 'develop'
       changes:
-        - images/${VERSION}/**
+        - images/${VERSION}/**/*
 
 main:docker:
   extends: .base:project
@@ -63,7 +63,7 @@ main:docker:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       changes:
-        - images/${VERSION}/**
+        - images/${VERSION}/**/*
 
 sonarcloud-check:
   variables:
