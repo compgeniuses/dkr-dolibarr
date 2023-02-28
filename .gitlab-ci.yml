@@ -7,56 +7,63 @@ stages:
 .matrix:versions:variants: &matrix_versions_variants
   parallel:
     matrix:
-      - VERSION: ['11.0', '12.0', '13.0', '14.0', '15.0']
-        PHP_VERSION: ['7.3']
-        VARIANT: ['fpm-alpine', 'fpm', 'apache']
-        ARCHI: ['i386', 'amd64']
-      - VERSION: ['16.0']
-        PHP_VERSION: ['8.1']
-        VARIANT: ['fpm-alpine', 'fpm', 'apache']
-        ARCHI: ['i386', 'amd64']
+      - VERSION: ['11.0', '12.0', '13.0', '14.0', '15.0', '16.0']
 
-.docker:build: &docker_build
-  - chmod -R +x ./hooks
-  - chmod +x ./hooks/run
-  - ./hooks/run build
-  # - ./hooks/run test
-
-.base:project:
-  stage: build
+dockerfile:base:
+  stage: .pre
   image: docker:latest
-  variables:
-      DOCKER_PASS: $DOCKER_PASSWORD
-      DOCKER_LOGIN: $DOCKER_USER
   services:
     - docker:dind
   before_script:
-    - apk add --no-cache bash
-    - cd images/${VERSION}/php${PHP_VERSION}-${VARIANT}-${ARCHI}
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:latest" .
+    - docker push -a $CI_REGISTRY_IMAGE
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - Dockerfile
+        - requirements.txt
+      when: always
+    - when: never
   tags:
     - docker
     - production
 
+.base:project:
+  stage: build
+  image: registry.gitlab.com/mlaplanche/docker-dolibarr:latest
+  <<: *matrix_versions_variants
+  variables:
+    DOCKER_PASS: $DOCKER_PASSWORD
+    DOCKER_LOGIN: $DOCKER_USER
+    DOCKER_BUILDKIT: 1
+    PYTHON_ON_WHALES_DEBUG: 0
+  services:
+    - docker:dind
+  before_script:
+    - pip install --no-cache-dir -r requirements.txt
+  tags:
+    - docker
+    - production
 
 develop:docker:
   extends: .base:project
-  <<: *matrix_versions_variants
   script:
-    - *docker_build
+    - python build_push.py -v ${VERSION}
   rules:
     - if: $CI_COMMIT_BRANCH == 'develop'
+      changes:
+        - images/${VERSION}/**
 
 main:docker:
   extends: .base:project
-  <<: *matrix_versions_variants
   script:
-    - *docker_build
-    # ne pas oublier de mettre les identifiants docker
-    - ./hooks/run push
+    - python build_push.py -v ${VERSION} -p
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       changes:
-        - images/${VERSION}/php${PHP_VERSION}-${VARIANT}-${ARCHI}/Dockerfile
+        - images/${VERSION}/**
 
 sonarcloud-check:
   variables:
@@ -80,7 +87,7 @@ sonarcloud-check:
     - docker
     - production
 
-.dockerhub:readme:
+dockerhub:readme:
   stage: .post
   image:
     name: chko/docker-pushrm
@@ -88,7 +95,7 @@ sonarcloud-check:
   variables:
     PUSHRM_TARGET: docker.io/$DOCKER_USER/docker-dolibarr
     USHRM_DEBUG: 1
-    PUSHRM_FILE: $CI_PROJECT_DIR/README.md
+    PUSHRM_FILE: $CI_PROJECT_DIR/docs/README_DOCKER_HUB.md
     DOCKER_PASS: $DOCKER_PASSWORD
     DOCKER_LOGIN: $DOCKER_USER
   script: "/bin/true"
