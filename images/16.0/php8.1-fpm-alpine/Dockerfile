@@ -1,11 +1,11 @@
 ARG ARCHI
-FROM ${ARCHI}/php:%%PHP_VERSION%%-%%VARIANT%%
+FROM ${ARCHI}/php:8.1-fpm-alpine
 
 # Install the packages we need
 # Install the PHP extensions we need
 # see https://wiki.dolibarr.org/index.php/Dependencies_and_external_libraries
-# Prepare folders 
-RUN set -ex; \
+# Prepare folders
+RUN set -ex; \ 
 	apk add --no-cache \
 		bzip2 \
 		icu-libs \
@@ -44,7 +44,7 @@ RUN set -ex; \
 		zlib-dev \
 	; \
 	docker-php-ext-configure ldap; \
-	docker-php-ext-configure gd --with-freetype-dir=/usr --with-png-dir=/usr --with-jpeg-dir=/usr; \
+	docker-php-ext-configure gd --with-freetype=/usr --with-jpeg=/usr; \
 	docker-php-ext-configure intl; \
 	docker-php-ext-configure zip; \
 	docker-php-ext-install -j "$(nproc)" \
@@ -52,7 +52,6 @@ RUN set -ex; \
 		gd \
 		intl \
 		ldap \
-		mbstring \
 		mysqli \
 		pdo \
 		pdo_mysql \
@@ -109,7 +108,7 @@ ENV DOLI_AUTO_CONFIGURE=1 \
 	PHP_MAX_EXECUTION_TIME=300
 
 # Build time env var
-ARG DOLI_VERSION=%%VERSION%%
+ARG DOLI_VERSION=16.0.4
 
 # Get Dolibarr
 ADD https://github.com/Dolibarr/dolibarr/archive/${DOLI_VERSION}.zip /tmp/dolibarr.zip
@@ -130,7 +129,7 @@ RUN set -ex; \
 	chmod 755 /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["%%CMD%%"]
+CMD ["php-fpm"]
 
 # Arguments to label built container
 # ARG VCS_REF
