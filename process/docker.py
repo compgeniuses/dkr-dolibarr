@@ -1,7 +1,7 @@
 """Module with docker method."""
 
 # Docker repository to push images to
-DOCKER_REPO = 'maximelaplanche/docker-dolibarr'
+DOCKER_REPO = 'n0xcode/docker-dolibarr'
 
 # List of architectures to build images for
 ARCHIS = [

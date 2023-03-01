@@ -7,7 +7,7 @@
 The apache image contains a webserver and exposes port 80. To start the container type:
 
 ```shell
-$ docker run -d -e DOLI_AUTO_CONFIGURE='' -p 8080:80 maximelaplanche/docker-dolibarr
+$ docker run -d -e DOLI_AUTO_CONFIGURE='' -p 8080:80 n0xcode/docker-dolibarr
 ```
 
 Now you can access Dolibarr at <http://localhost:8080/> from your host system.
@@ -19,7 +19,7 @@ If you use your host you can address your Dolibarr container directly on port 90
 In both cases you don't want to map the fpm port to you host.
 
 ```shell
-$ docker run -d -e DOLI_AUTO_CONFIGURE='' maximelaplanche/docker-dolibarr:fpm
+$ docker run -d -e DOLI_AUTO_CONFIGURE='' n0xcode/docker-dolibarr:fpm
 ```
 
 As the fastCGI-Process is not capable of serving static files (style sheets, images, ...) the webserver needs access to these files. This can be achieved with the `volumes-from` option. You can find more information in the docker-compose section.
