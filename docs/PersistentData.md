@@ -16,7 +16,7 @@ $ docker run -d \
     -v dolibarr_html:/var/www/html \
     -v dolibarr_docs:/var/www/documents \
     -e DOLI_AUTO_CONFIGURE='' \
-    maximelaplanche/docker-dolibarr
+    n0xcode/docker-dolibarr
 ```
 
 Database:
@@ -50,6 +50,6 @@ $ docker run -d \
     -v config:/var/www/html/conf \
     -v theme:/var/www/html/theme/<YOUR_CUSTOM_THEME> \
     -e DOLI_AUTO_CONFIGURE='' \
-    maximelaplanche/docker-dolibarr
+    n0xcode/docker-dolibarr
 ```
 [<< Go back](./README.md)

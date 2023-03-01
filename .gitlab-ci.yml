@@ -26,35 +26,37 @@ dockerfile:base:
         - requirements.txt
       when: always
     - when: never
-  tags:
-    - docker
-    - production
 
 .base:project:
   stage: build
-  image: registry.gitlab.com/mlaplanche/docker-dolibarr:latest
+  image: registry.gitlab.com/n0xcode/docker-dolibarr:latest
   <<: *matrix_versions_variants
   variables:
     DOCKER_PASS: $DOCKER_PASSWORD
     DOCKER_LOGIN: $DOCKER_USER
     DOCKER_BUILDKIT: 1
     PYTHON_ON_WHALES_DEBUG: 0
+    DOCKER_HOST: tcp://docker:2375
   services:
-    - docker:dind
+    - name: docker:20-dind
+      command: ["--experimental"]
   before_script:
     - pip install --no-cache-dir -r requirements.txt
-  tags:
-    - docker
-    - production
 
 develop:docker:
   extends: .base:project
   script:
+    - /root/.cache/python-on-whales/docker-cli/20.10.5/docker version
     - python build_push.py -v ${VERSION}
   rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+      when: never
+    - if: $CI_COMMIT_REF_NAME =~ /^feature/
+      when: manual
     - if: $CI_COMMIT_BRANCH == 'develop'
       changes:
         - images/${VERSION}/**/*
+      when: always
 
 main:docker:
   extends: .base:project
@@ -83,9 +85,6 @@ sonarcloud-check:
     - merge_requests
     - main
     - develop
-  tags:
-    - docker
-    - production
 
 dockerhub:readme:
   stage: .post
@@ -102,6 +101,3 @@ dockerhub:readme:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       when: on_success
-  tags:
-    - docker
-    - production

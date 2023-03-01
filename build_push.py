@@ -9,6 +9,7 @@ import process
 # Vérifiez que les informations d'identification de votre compte Docker Hub sont définies
 docker_username = os.environ.get('DOCKER_LOGIN')
 docker_password = os.environ.get('DOCKER_PASS')
+vcs_ref = os.environ.get('CI_COMMIT_SHORT_SHA')
 if not docker_username or not docker_password:
     raise ValueError(
         "Veuillez définir les variables d'environnement DOCKER_LOGIN et "+
@@ -60,6 +61,7 @@ for variant in process.dolibarr.VARIANTS:
             build_args = {
                 'TAG': args.version[0],
                 'BUILD_DATE': datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ'),
+                'VCS_REF': vcs_ref,
                 'ARCHI': arch
             }
             print(f"        -- Image to build : {process.docker.DOCKER_REPO} -> {tags}")

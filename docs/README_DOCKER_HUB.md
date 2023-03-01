@@ -1,20 +1,20 @@
 <!-- >Header -->
-[![License: AGPL v3](https://img.shields.io/gitlab/license/mlaplanche/docker-dolibarr?color=blue&style=for-the-badge)](https://gitlab.com/mlaplanche/docker-dolibarr/-/blob/main/LICENSE)
-[![Build Status](https://img.shields.io/gitlab/pipeline-status/mlaplanche/docker-dolibarr?branch=main&style=for-the-badge)](https://gitlab.com/mlaplanche/docker-dolibarr/-/pipelines?scope=branches)
-[![Docker Pulls](https://img.shields.io/docker/pulls/maximelaplanche/docker-dolibarr?style=for-the-badge)](https://hub.docker.com/r/maximelaplanche/docker-dolibarr)
-[![Latest version](https://img.shields.io/gitlab/v/release/mlaplanche/docker-dolibarr?sort=semver&style=for-the-badge)](https://github.com/Dolibarr/dolibarr/releases/)
-[![Docker Size](https://img.shields.io/docker/image-size/maximelaplanche/docker-dolibarr?sort=semver&style=for-the-badge)](https://hub.docker.com/r/maximelaplanche/docker-dolibarr)
-[![Docker stars](https://img.shields.io/docker/stars/maximelaplanche/docker-dolibarr?style=for-the-badge)](https://hub.docker.com/r/maximelaplanche/docker-dolibarr)
-[![Gitlab stars](https://img.shields.io/gitlab/stars/mlaplanche/docker-dolibarr?label=Gitlab%20stars&style=for-the-badge)](https://img.shields.io/gitlab/stars/docker-dolibarr?label=Gitlab%20stars&style=for-the-badge)
+[![License: AGPL v3](https://img.shields.io/gitlab/license/n0xcode/docker-dolibarr?color=blue&style=for-the-badge)](https://gitlab.com/n0xcode/docker-dolibarr/-/blob/main/LICENSE)
+[![Build Status](https://img.shields.io/gitlab/pipeline-status/n0xcode/docker-dolibarr?branch=main&style=for-the-badge)](https://gitlab.com/n0xcode/docker-dolibarr/-/pipelines?scope=branches)
+[![Docker Pulls](https://img.shields.io/docker/pulls/n0xcode/docker-dolibarr?style=for-the-badge)](https://hub.docker.com/r/n0xcode/docker-dolibarr)
+[![Latest version](https://img.shields.io/gitlab/v/release/n0xcode/docker-dolibarr?sort=semver&style=for-the-badge)](https://github.com/Dolibarr/dolibarr/releases/)
+[![Docker Size](https://img.shields.io/docker/image-size/n0xcode/docker-dolibarr?sort=semver&style=for-the-badge)](https://hub.docker.com/r/n0xcode/docker-dolibarr)
+[![Docker stars](https://img.shields.io/docker/stars/n0xcode/docker-dolibarr?style=for-the-badge)](https://hub.docker.com/r/n0xcode/docker-dolibarr)
+[![Gitlab stars](https://img.shields.io/gitlab/stars/n0xcode/docker-dolibarr?label=Gitlab%20stars&style=for-the-badge)](https://img.shields.io/gitlab/stars/docker-dolibarr?label=Gitlab%20stars&style=for-the-badge)
 [![GitHub stars](https://img.shields.io/github/stars/LaplancheMaxime/docker-dolibarr?label=Github%20stars&style=for-the-badge)](https://img.shields.io/github/stars/LaplancheMaxime/docker-dolibarr?label=Github%20stars&style=for-the-badge)
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=bugs)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=mlaplanche_docker-dolibarr&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=mlaplanche_docker-dolibarr)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=n0xcode_docker-dolibarr&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=n0xcode_docker-dolibarr)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=n0xcode_docker-dolibarr&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=n0xcode_docker-dolibarr)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=n0xcode_docker-dolibarr&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=n0xcode_docker-dolibarr)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=n0xcode_docker-dolibarr&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=n0xcode_docker-dolibarr)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=n0xcode_docker-dolibarr&metric=bugs)](https://sonarcloud.io/summary/new_code?id=n0xcode_docker-dolibarr)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=n0xcode_docker-dolibarr&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=n0xcode_docker-dolibarr)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=n0xcode_docker-dolibarr&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=n0xcode_docker-dolibarr)
 <!-- <Header -->
 # Dolibarr on Docker
 
@@ -22,7 +22,7 @@ Docker image for Dolibarr.
 
 Provides full database configuration, production mode, HTTPS enforcer (SSL must be provided by reverse proxy), handles upgrades, and so on...
 
-**[View full documentation here](https://gitlab.com/mlaplanche/docker-dolibarr/-/tree/main/docs/README.md)**
+**[View full documentation here](https://gitlab.com/n0xcode/docker-dolibarr/-/tree/main/docs/README.md)**
 
 ## What is Dolibarr
 
@@ -32,7 +32,7 @@ Dolibarr ERP & CRM is a modern software package to manage your organization's ac
 
 ## Supported tags and respective Dockerfile links
 
-[Dockerhub maximelaplanche/docker-dolibarr](https://hub.docker.com/r/maximelaplanche/docker-dolibarr)
+[Dockerhub n0xcode/docker-dolibarr](https://hub.docker.com/r/n0xcode/docker-dolibarr)
 
 Tags:
 
@@ -72,7 +72,7 @@ Tags:
 ## How to run this image
 
 This image is based on the [officiel PHP repository](https://registry.hub.docker.com/_/php/).
-It is inspired from [nextcloud](https://github.com/nextcloud/docker) and [tuxgasy/docker-dolibarr](https://github.com/tuxgasy/docker-dolibarr).
+It is inspired from [nextcloud](https://github.com/nextcloud/docker), [tuxgasy/docker-dolibarr](https://github.com/tuxgasy/docker-dolibarr) and [Monogramm/docker-dolibarr](https://github.com/Monogramm/docker-dolibarr).
 
 This image does not contain the database for Dolibarr. You need to use either an existing database or a database container.
 
@@ -85,4 +85,4 @@ The second option is a `fpm` container. It is based on the [php-fpm](https://hub
 
 ## Questions / Issues
 
-If you got any questions or problems using the image, please visit our [Gitlab Repository](https://gitlab.com/mlaplanche/docker-dolibarr) and write an issue.  
+If you got any questions or problems using the image, please visit our [Gitlab Repository](https://gitlab.com/n0xcode/docker-dolibarr) and write an issue.  
