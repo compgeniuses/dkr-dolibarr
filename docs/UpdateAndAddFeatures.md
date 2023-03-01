@@ -7,10 +7,10 @@
 Updating the Dolibarr container is done by pulling the new image, throwing away the old container and starting the new one. Since all data is stored in volumes, nothing gets lost. The startup script will check for the version in your volume and the installed docker version. If it finds a mismatch, it automatically starts the upgrade process. Don't forget to add all the volumes to your new container, so it works as expected. Also, we advised you do not skip major versions during your upgrade. For instance, upgrade from 5.0 to 6.0, then 6.0 to 7.0, not directly from 5.0 to 7.0.
 
 ```shell
-$ docker pull maximelaplanche/docker-dolibarr
+$ docker pull n0xcode/docker-dolibarr
 $ docker stop <your_dolibarr_container>
 $ docker rm <your_dolibarr_container>
-$ docker run <OPTIONS> -d maximelaplanche/docker-dolibarr
+$ docker run <OPTIONS> -d n0xcode/docker-dolibarr
 ```
 
 Beware that you have to run the same command with the options that you used to initially start your Dolibarr. That includes volumes, port mapping.
@@ -28,7 +28,7 @@ If the image does not include the packages you need, you can easily build your o
 Start your derived image with the `FROM` statement and add whatever you like.
 
 ```Dockerfile
-FROM maximelaplanche/docker-dolibarr:apache
+FROM n0xcode/docker-dolibarr:apache
 
 RUN ...
 
