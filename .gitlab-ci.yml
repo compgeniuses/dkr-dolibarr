@@ -7,7 +7,7 @@ stages:
 .matrix:versions:variants: &matrix_versions_variants
   parallel:
     matrix:
-      - VERSION: ['11.0', '12.0', '13.0', '14.0', '15.0', '16.0']
+      - VERSION: ['11.0', '12.0', '13.0', '14.0', '15.0', '16.0', '17.0']
 
 dockerfile:base:
   stage: .pre
