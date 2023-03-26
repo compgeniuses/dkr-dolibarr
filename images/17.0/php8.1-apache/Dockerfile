@@ -104,6 +104,7 @@ ENV	PHP_MAX_EXECUTION_TIME 300
 
 # Build time env var
 ARG DOLI_VERSION=17.0.0
+ENV DOLI_VERSION ${DOLI_VERSION}
 
 # Get Dolibarr
 ADD https://github.com/Dolibarr/dolibarr/archive/${DOLI_VERSION}.zip /tmp/dolibarr.zip
@@ -113,11 +114,12 @@ RUN set -ex; \
 	mkdir -p /tmp/dolibarr; \
 	unzip -q /tmp/dolibarr.zip -d /tmp/dolibarr; \
 	rm /tmp/dolibarr.zip; \
-	mkdir -p /usr/src/dolibarr; \
-	cp -r "/tmp/dolibarr/dolibarr-${DOLI_VERSION}"/* /usr/src/dolibarr; \
+	cp -r /tmp/dolibarr/dolibarr-${DOLI_VERSION}/htdocs/* /var/www/html/; \
+	ln -s /var/www/html /var/www/htdocs; \
+	cp -r /tmp/dolibarr/dolibarr-${DOLI_VERSION}/scripts /var/www/ ; \
 	rm -rf /tmp/dolibarr; \
-	chmod +x /usr/src/dolibarr/scripts/*; \
-	echo "${DOLI_VERSION}" > /usr/src/dolibarr/.docker-image-version
+	chown -R www-data:www-data /var/www; \
+	echo "${DOLI_VERSION}" > /var/www/html/.docker-image-version
 
 # Arguments to label built container
 ARG VCS_REF
@@ -151,10 +153,8 @@ LABEL maintainer="Maxime LAPLANCHE <maxime.laplanche@outlook.com>" \
 
 EXPOSE 80
 
-VOLUME /var/www/documents 
-VOLUME /var/www/scripts
+VOLUME /var/www/documents
 VOLUME /var/www/custom
-VOLUME /var/www/html
 
 COPY entrypoint.sh /
 RUN set -ex; \
