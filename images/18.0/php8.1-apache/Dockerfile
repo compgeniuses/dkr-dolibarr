@@ -1,11 +1,11 @@
 ARG ARCHI
-FROM ${ARCHI}/php:7.3-fpm
+FROM ${ARCHI}/php:8.1-apache
 
 # Install the packages we need
 # Install the PHP extensions we need
 # see https://wiki.dolibarr.org/index.php/Dependencies_and_external_libraries
 # Prepare folders
-RUN set -ex; \
+RUN set -ex; \ 
 	apt-get update -q; \
 	apt-get install -y --no-install-recommends \
 		bzip2 \
@@ -35,15 +35,14 @@ RUN set -ex; \
 	; \
 	debMultiarch="$(dpkg-architecture --query DEB_BUILD_MULTIARCH)"; \
 	docker-php-ext-configure ldap --with-libdir="lib/$debMultiarch"; \
-	docker-php-ext-configure gd --with-freetype-dir=/usr --with-png-dir=/usr --with-jpeg-dir=/usr; \
+	docker-php-ext-configure gd --with-freetype=/usr --with-jpeg=/usr; \
 	docker-php-ext-configure intl; \
-	docker-php-ext-configure zip --with-libzip; \
+	docker-php-ext-configure zip; \
 	docker-php-ext-install -j "$(nproc)" \
 		calendar \
 		gd \
 		intl \
 		ldap \
-		mbstring \
 		mysqli \
 		pdo \
 		pdo_mysql \
@@ -104,7 +103,7 @@ ENV	PHP_MAX_UPLOAD 20M
 ENV	PHP_MAX_EXECUTION_TIME 300
 
 # Build time env var
-ARG DOLI_VERSION=11.0.5
+ARG DOLI_VERSION=18.0.1
 ENV DOLI_VERSION ${DOLI_VERSION}
 
 # Get Dolibarr
@@ -162,4 +161,4 @@ RUN set -ex; \
 	chmod 755 /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["php-fpm"]
+CMD ["apache2-foreground"]
