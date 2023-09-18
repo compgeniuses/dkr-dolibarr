@@ -7,7 +7,7 @@ FROM ${ARCHI}/php:8.1-apache
 # Prepare folders
 RUN set -ex; \ 
 	apt-get update -q; \
-	apt-get install -y --no-install-recommends \
+	apt-get install -y --no-install-recommends \ 
 		bzip2 \
 		default-mysql-client \
 		cron \
